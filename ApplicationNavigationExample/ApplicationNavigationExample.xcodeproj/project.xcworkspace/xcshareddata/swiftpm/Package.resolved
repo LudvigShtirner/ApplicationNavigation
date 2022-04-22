@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ApplicationNavigation",
+        "repositoryURL": "https://github.com/LudvigShtirner/ApplicationNavigation.git",
+        "state": {
+          "branch": "main",
+          "revision": "f3d2f904f93e8e18797f0d44c53d2baa4fc616b2",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

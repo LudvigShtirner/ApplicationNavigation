@@ -1,0 +1,10 @@
+/* 
+  RootLocalization.strings
+  ApplicationNavigation
+
+  Created by Алексей Филиппов on 07.11.2021.
+  
+*/
+
+"#KEY_Modal" = "Модально";
+"#KEY_Push" = "Пуш";
