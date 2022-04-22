@@ -6,7 +6,7 @@
 //
 
 // Subprojects
-import ApplicationNavigationPackage
+import ApplicationNavigation
 
 protocol ChildFlowFactory {
     func makeCoordinator(closerType: CloserType) -> ChildCoordinator

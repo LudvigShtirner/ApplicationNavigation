@@ -6,7 +6,7 @@
 //
 
 // Subprojects
-import ApplicationNavigationPackage
+import ApplicationNavigation
 
 // Apple
 import UIKit
