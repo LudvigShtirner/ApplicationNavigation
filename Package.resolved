@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SupportCode",
+        "repositoryURL": "https://github.com/LudvigShtirner/SupportCode.git",
+        "state": {
+          "branch": "main",
+          "revision": "3c26c99381d2c7eaa883ca7e96eb2f16777ec43b",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
