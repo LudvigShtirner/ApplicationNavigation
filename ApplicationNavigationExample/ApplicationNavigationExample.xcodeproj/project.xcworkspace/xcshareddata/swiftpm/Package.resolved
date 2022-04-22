@@ -1,0 +1,34 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ApplicationNavigation",
+        "repositoryURL": "https://github.com/LudvigShtirner/ApplicationNavigation.git",
+        "state": {
+          "branch": "main",
+          "revision": "1a2a24c02bf8047bf7af86a6e79775c9842436c2",
+          "version": null
+        }
+      },
+      {
+        "package": "SnapKit",
+        "repositoryURL": "https://github.com/SnapKit/SnapKit",
+        "state": {
+          "branch": null,
+          "revision": "f222cbdf325885926566172f6f5f06af95473158",
+          "version": "5.6.0"
+        }
+      },
+      {
+        "package": "SupportCode",
+        "repositoryURL": "https://github.com/LudvigShtirner/SupportCode.git",
+        "state": {
+          "branch": "main",
+          "revision": "1069dc0f857518b382c68970708f7ce0ef6ef72c",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

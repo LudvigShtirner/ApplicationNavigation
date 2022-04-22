@@ -9,7 +9,7 @@ let package = Package(
     products: [
         .library(
             name: "ApplicationNavigation",
-            targets: ["ApplicationNavigationPackage"]),
+            targets: ["ApplicationNavigation"]),
     ],
     dependencies: [
         .package(name: "SupportCode",
@@ -20,10 +20,10 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
-            name: "ApplicationNavigationPackage",
+            name: "ApplicationNavigation",
             dependencies: ["SupportCode"]),
         .testTarget(
-            name: "ApplicationNavigationPackageTests",
-            dependencies: ["ApplicationNavigationPackage"]),
+            name: "ApplicationNavigationTests",
+            dependencies: ["ApplicationNavigation"]),
     ]
 )
