@@ -13,6 +13,9 @@ let package = Package(
             targets: ["ApplicationNavigationPackage"]),
     ],
     dependencies: [
+        .package(name: "SupportCode",
+                 url: "github.com/LudvigShtirner/SupportCode.git",
+                 branch: "main")
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
     ],
