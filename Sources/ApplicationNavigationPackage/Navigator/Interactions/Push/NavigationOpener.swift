@@ -6,7 +6,7 @@
 //
 
 // Subprojects
-import SupportCodePackage
+import SupportCode
 
 // Apple
 import UIKit
