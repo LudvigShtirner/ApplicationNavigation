@@ -37,6 +37,8 @@ final class NavigatorFactoryImpl: NavigatorFactory {
                                     animated: config.animated)
         case .modal(let config):
             return ModalCloser(animated: config.animated)
+        case .fall(let config):
+            return FallCloser(duration: config.duration)
         }
     }
     
@@ -52,6 +54,9 @@ final class NavigatorFactoryImpl: NavigatorFactory {
             return ModalOpener(presentingVC: config.presentingController,
                                animated: config.animated,
                                modalPresentationStyle: config.modalPresentationStyle)
+        case .fall(let config):
+            return FallOpener(presentingVC: config.presentingController,
+                              duration: config.duration)
         }
     }
 }

@@ -8,7 +8,7 @@
 // Subprojects
 import SupportCode
 
-/// Расширенеи 
+/// Расширение для обозначения дефолтного словаря для переводов
 extension LocalizationResource {
     static var commonTableName: String { "CommonLocalization" }
 }

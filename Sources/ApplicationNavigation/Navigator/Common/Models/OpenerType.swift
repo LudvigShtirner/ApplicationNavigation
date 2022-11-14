@@ -16,17 +16,19 @@ public enum OpenerType {
     case push(PushOpenConfig)
     /// Показ контроллера модально
     case modal(ModalOpenConfig)
+    /// Показ контроллера падающей анимацией
+    case fall(FallOpenConfig)
 }
 
 /// Модель для настройки модального перехода
 public struct ModalOpenConfig {
     // MARK: - Data
     /// Исходный контроллер отображения
-    public let presentingController: UIViewController
+    let presentingController: UIViewController
     /// Флаг наличия анимации
-    public let animated: Bool
+    let animated: Bool
     /// Стиль открытия
-    public let modalPresentationStyle: UIModalPresentationStyle
+    let modalPresentationStyle: UIModalPresentationStyle
     
     // MARK: - Life cycle
     /// Конструктор создания модели
@@ -47,11 +49,11 @@ public struct ModalOpenConfig {
 public struct PushOpenConfig {
     // MARK: - Data
     /// Стек навигации
-    public let navigationController: UINavigationController
+    let navigationController: UINavigationController
     /// Флаг наличия анимации
-    public let animated: Bool
+    let animated: Bool
     /// Флаг замены стека навигации
-    public let replaceStack: Bool
+    let replaceStack: Bool
     
     // MARK: - Life Cycle
     /// Конструктор создания модели
@@ -65,5 +67,25 @@ public struct PushOpenConfig {
         self.navigationController = navigationController
         self.animated = animated
         self.replaceStack = replaceStack
+    }
+}
+
+/// Модель для настройки падающей анимации
+public struct FallOpenConfig {
+    // MARK: - Data
+    /// Исходный контроллер отображения
+    let presentingController: UIViewController
+    /// Длительность анимации
+    let duration: TimeInterval
+    
+    // MARK: - Life Cycle
+    /// Конструктор создания модели
+    /// - Parameters:
+    ///   - presentingController: Исходный контроллер отображения
+    ///   - duration: Длительность анимации
+    public init(presentingController: UIViewController,
+                duration: TimeInterval) {
+        self.presentingController = presentingController
+        self.duration = duration
     }
 }
