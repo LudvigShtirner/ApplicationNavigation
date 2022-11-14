@@ -15,6 +15,7 @@ final class RootViewModelImpl {
     private var closeAction: VoidBlock?
     private var pushAction: VoidBlock?
     private var modalAction: VoidBlock?
+    private var fallAction: VoidBlock?
     
     // MARK: - Life cycle
     init() {
@@ -45,6 +46,10 @@ extension RootViewModelImpl: RootViewModelInput {
     func pushButtonClicked() {
         pushAction?()
     }
+    
+    func fallButtonClicked() {
+        fallAction?()
+    }
 }
 
 // MARK: - RootViewModelOutput
@@ -64,5 +69,9 @@ extension RootViewModelImpl: RootCoordinatorInteractor {
     
     func onModal(_ closure: @escaping VoidBlock) {
         modalAction = closure
+    }
+    
+    func onFall(_ closure: @escaping VoidBlock) {
+        fallAction = closure
     }
 }

@@ -24,6 +24,7 @@ final class RootViewController: UIViewController {
     private let cancelButton = UIButton(type: .system)
     private let modalOpeningButton = UIButton(type: .system)
     private let pushOpeningButton = UIButton(type: .system)
+    private let fallOpeningButton = UIButton(type: .system)
     
     // MARK: - Life Cycle
     init(input: RootViewModelInput,
@@ -71,6 +72,10 @@ final class RootViewController: UIViewController {
         pushOpeningButton.setTitle(RootLocalization.push, for: .normal)
         pushOpeningButton.addTarget(self, action: #selector(pushButtonClicked), for: .touchUpInside)
         
+        stackView.addArrangedSubview(fallOpeningButton)
+        fallOpeningButton.setTitle(RootLocalization.fall, for: .normal)
+        fallOpeningButton.addTarget(self, action: #selector(fallButtonClicked), for: .touchUpInside)
+        
         view.addSubview(cancelButton)
         cancelButton.setTitle(RootLocalization.cancel, for: .normal)
         
@@ -85,12 +90,14 @@ final class RootViewController: UIViewController {
                                          for: .normal)
         pushOpeningButton.setTitleColor(view.isDarkMode ? .white : .black,
                                         for: .normal)
+        fallOpeningButton.setTitleColor(view.isDarkMode ? .white : .black,
+                                        for: .normal)
     }
     
     private func setupConstraints() {
         cancelButton.snp.makeConstraints { make in
-            make.left.equalTo(view.safeAreaLayoutGuide.snp.left)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.left.equalTo(view.safeAreaLayoutGuide.snp.left).inset(16.0)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(16.0)
         }
         stackView.snp.makeConstraints { make in
             make.left.right.centerY.equalToSuperview()
@@ -104,6 +111,10 @@ final class RootViewController: UIViewController {
     
     @objc private func pushButtonClicked() {
         viewModel.pushButtonClicked()
+    }
+    
+    @objc private func fallButtonClicked() {
+        viewModel.fallButtonClicked()
     }
 }
 
@@ -123,11 +134,8 @@ struct RootViewControllerContainer: UIViewControllerRepresentable {
 struct RootViewControllerContainer_Previews: PreviewProvider {
     static var previews: some View {
         RootViewControllerContainer()
-            .colorScheme(.light)
             .previewLayout(.device)
-        RootViewControllerContainer()
-            .colorScheme(.dark)
-            .previewLayout(.device)
+            .edgesIgnoringSafeArea(.vertical)
     }
 }
 

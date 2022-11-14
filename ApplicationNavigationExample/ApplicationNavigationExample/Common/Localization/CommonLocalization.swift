@@ -8,7 +8,10 @@
 // Subprojects
 import SupportCode
 
+// Apple
+import Foundation
+
 /// Расширение для обозначения дефолтного словаря для переводов
 extension LocalizationResource {
-    static var commonTableName: String { "CommonLocalization" }
+    static var commonTable: (bundle: Bundle, tableName: String) { (.main, "CommonLocalization") }
 }

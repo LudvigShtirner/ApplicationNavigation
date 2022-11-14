@@ -1,34 +1,32 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "ApplicationNavigation",
-        "repositoryURL": "https://github.com/LudvigShtirner/ApplicationNavigation.git",
-        "state": {
-          "branch": "main",
-          "revision": "4b2ab9e6b4b762969f21cea60bcb0f3860503295",
-          "version": null
-        }
-      },
-      {
-        "package": "SnapKit",
-        "repositoryURL": "https://github.com/SnapKit/SnapKit",
-        "state": {
-          "branch": null,
-          "revision": "f222cbdf325885926566172f6f5f06af95473158",
-          "version": "5.6.0"
-        }
-      },
-      {
-        "package": "SupportCode",
-        "repositoryURL": "https://github.com/LudvigShtirner/SupportCode.git",
-        "state": {
-          "branch": "main",
-          "revision": "1069dc0f857518b382c68970708f7ce0ef6ef72c",
-          "version": null
-        }
+  "pins" : [
+    {
+      "identity" : "applicationnavigation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LudvigShtirner/ApplicationNavigation.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "fb59c4e2f7243cee05f0b414fe4136d55ce9a9c8"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit",
+      "state" : {
+        "revision" : "f222cbdf325885926566172f6f5f06af95473158",
+        "version" : "5.6.0"
+      }
+    },
+    {
+      "identity" : "supportcode",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LudvigShtirner/SupportCode.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a699a49deef850c8aac21a85ccd42d36436a6366"
+      }
+    }
+  ],
+  "version" : 2
 }

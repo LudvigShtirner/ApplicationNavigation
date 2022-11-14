@@ -36,25 +36,36 @@ final class RootCoordinator: BaseCoordinator {
         }
         module.coordinatorInteractor.onModal { [weak self, weak navigationViewController] in
             guard let navigationViewController = navigationViewController else { return }
-            self?.runChildFlow(openerType: .modal(.init(presentingController: navigationViewController)))
+            self?.runChildFlow(openerType: .modal(.init(presentingController: navigationViewController)),
+                               navigationViewController: navigationViewController)
         }
         module.coordinatorInteractor.onPush { [weak self, weak navigationViewController] in
             guard let navigationViewController = navigationViewController else { return }
-            self?.runChildFlow(openerType: .push(.init(navigationController: navigationViewController)))
+            self?.runChildFlow(openerType: .push(.init(navigationController: navigationViewController)),
+                               navigationViewController: navigationViewController)
+        }
+        module.coordinatorInteractor.onFall { [weak self, weak navigationViewController] in
+            guard let navigationViewController = navigationViewController else { return }
+            self?.runChildFlow(openerType: .fall(.init(presentingController: navigationViewController,
+                                                       duration: 0.3)),
+                               navigationViewController: navigationViewController)
         }
         return navigationViewController
     }
     
     // MARK: - Private methods
-    private func runChildFlow(openerType: OpenerType) {
+    private func runChildFlow(openerType: OpenerType,
+                              navigationViewController: UINavigationController) {
         var closerType: CloserType
         switch openerType {
         case .root:
             closerType = .root
         case .modal:
             closerType = .modal(.init(animated: true))
-        case .push(let config):
-            closerType = .push(.init(navigationController: config.navigationController))
+        case .push:
+            closerType = .push(.init(navigationController: navigationViewController))
+        case .fall(_):
+            closerType = .fall(.init(duration: 0.3))
         }
         let coordinator = childFlowFactory.makeCoordinator(closerType: closerType)
         runNextFlow(coordinator: coordinator,

@@ -13,4 +13,5 @@ final class RootLocalization: LocalizationResource {
     static let cancel = localize(for: "#KEY_Cancel")
     static let modal = localize(for: "#KEY_Modal")
     static let push = localize(for: "#KEY_Push")
+    static let fall = localize(for: "#KEY_Fall")
 }
