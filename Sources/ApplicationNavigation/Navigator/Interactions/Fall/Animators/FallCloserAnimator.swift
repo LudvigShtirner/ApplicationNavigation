@@ -30,15 +30,9 @@ extension FallCloserAnimator: UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        let toVC = transitionContext.viewController(forKey: .to)!
-        let containerView = transitionContext.containerView
-        
-        let fallingView = toVC.view!
-        containerView.addSubview(fallingView)
-        
+        let fromVC = transitionContext.viewController(forKey: .from)!
+        let fallingView = fromVC.view!
         let size = fallingView.frame.size
-        fallingView.frame = .init(origin: .zero,
-                                  size: size)
         
         UIView.animate(withDuration: duration,
                        delay: .zero,
