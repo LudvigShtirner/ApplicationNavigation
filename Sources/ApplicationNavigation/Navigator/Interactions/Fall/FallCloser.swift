@@ -29,6 +29,7 @@ final class FallCloser: NSObject, Closer {
     // MARK: - Closer
     func hide(_ viewController: UIViewController,
               completion: VoidBlock?) {
+        viewController.transitioningDelegate = self
         viewController.dismiss(animated: true,
                                completion: completion)
     }
