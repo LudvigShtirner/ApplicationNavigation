@@ -31,20 +31,28 @@ extension FallCloserAnimator: UIViewControllerAnimatedTransitioning {
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let fromVC = transitionContext.viewController(forKey: .from)!
+        let fromVCFrame = transitionContext.finalFrame(for: fromVC)
         let toVC = transitionContext.viewController(forKey: .to)!
-        let fallingView = fromVC.view!
-        let size = fallingView.frame.size
-        toVC.view.frame.origin = .zero
         
-        UIView.animate(withDuration: duration,
-                       delay: .zero,
-                       options: [.allowAnimatedContent, .curveEaseInOut, .preferredFramesPerSecond60]) {
-            fallingView.frame = .init(origin: .init(x: .zero,
-                                                    y: -size.height),
-                                      size: size)
-        } completion: { success in
+        transitionContext.containerView.insertSubview(toVC.view, at: 0)
+        
+        let animator = UIViewPropertyAnimator(duration: duration,
+                                              timingParameters: kFallAnimationTimingFunction)
+        animator.scrubsLinearly = false
+        animator.addAnimations {
+            fromVC.view.frame = .init(origin: .init(x: .zero,
+                                                    y: -fromVCFrame.size.height),
+                                      size: fromVCFrame.size)
+        }
+        animator.addCompletion { position in
+            let success = position == .end
+            guard success else {
+                transitionContext.completeTransition(false)
+                return
+            }
             let isCancelled = transitionContext.transitionWasCancelled
             transitionContext.completeTransition(!isCancelled)
         }
+        animator.startAnimation()
     }
 }

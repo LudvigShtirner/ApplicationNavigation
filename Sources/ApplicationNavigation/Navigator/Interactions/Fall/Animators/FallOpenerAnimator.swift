@@ -8,6 +8,10 @@
 // Apple
 import UIKit
 
+// MARK: - Constants
+let kFallAnimationTimingFunction = UICubicTimingParameters(controlPoint1: .zero,
+                                                           controlPoint2: CGPoint(x: 0.3, y: 1.0))
+
 /// Кастомный аниматор открытия ViewController
 final class FallOpenerAnimator: NSObject {
     // MARK: - Data
@@ -31,24 +35,31 @@ extension FallOpenerAnimator: UIViewControllerAnimatedTransitioning {
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let toVC = transitionContext.viewController(forKey: .to)!
+        let finalFrame = transitionContext.finalFrame(for: toVC)
         let containerView = transitionContext.containerView
+        let fallingView = transitionContext.view(forKey: .to)!
         
-        let fallingView = toVC.view!
         containerView.addSubview(fallingView)
         
-        let size = fallingView.frame.size
         fallingView.frame = .init(origin: .init(x: .zero,
-                                                y: -size.height),
-                                  size: size)
+                                                y: -finalFrame.size.height),
+                                  size: finalFrame.size)
         
-        UIView.animate(withDuration: duration,
-                       delay: .zero,
-                       options: [.allowAnimatedContent, .curveEaseInOut, .preferredFramesPerSecond60]) {
-            fallingView.frame = .init(origin: .zero,
-                                      size: size)
-        } completion: { success in
+        let animator = UIViewPropertyAnimator(duration: duration,
+                                              timingParameters: kFallAnimationTimingFunction)
+        animator.scrubsLinearly = false
+        animator.addAnimations {
+            fallingView.frame = finalFrame
+        }
+        animator.addCompletion { position in
+            let success = position == .end
+            guard success else {
+                transitionContext.completeTransition(false)
+                return
+            }
             let isCancelled = transitionContext.transitionWasCancelled
             transitionContext.completeTransition(!isCancelled)
         }
+        animator.startAnimation()
     }
 }

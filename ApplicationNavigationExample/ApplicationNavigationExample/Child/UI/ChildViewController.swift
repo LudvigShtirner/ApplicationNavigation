@@ -17,7 +17,8 @@ final class ChildViewController: UIViewController {
     private let viewModel: ChildViewModelInput
     
     // MARK: - UI
-    private var cancelButton = UIButton(type: .system)
+    private let cancelButton = UIButton(type: .system)
+    private let backgroundImageView = UIImageView()
     
     // MARK: - Life Cycle
     init(input: ChildViewModelInput,
@@ -51,6 +52,10 @@ final class ChildViewController: UIViewController {
     }
     
     private func setupUI() {
+        view.addSubview(backgroundImageView)
+        backgroundImageView.image = UIImage(named: "wallpaper")
+        backgroundImageView.contentMode = .scaleAspectFill
+        
         view.addSubview(cancelButton)
         cancelButton.setTitle(RootLocalization.cancel, for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelButtonClicked), for: .touchUpInside)
@@ -60,10 +65,12 @@ final class ChildViewController: UIViewController {
     }
     
     private func setupColors() {
-        view.backgroundColor = .red
     }
     
     private func setupConstraints() {
+        backgroundImageView.snp.makeConstraints { make in
+            make.directionalEdges.equalToSuperview()
+        }
         cancelButton.snp.makeConstraints { make in
             make.left.equalTo(view.safeAreaLayoutGuide.snp.left)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
@@ -92,11 +99,8 @@ struct ChildViewControllerContainer: UIViewControllerRepresentable {
 struct ChildViewControllerContainer_Previews: PreviewProvider {
     static var previews: some View {
         ChildViewControllerContainer()
-            .colorScheme(.light)
             .previewLayout(.device)
-        ChildViewControllerContainer()
-            .colorScheme(.dark)
-            .previewLayout(.device)
+            .edgesIgnoringSafeArea(.vertical)
     }
 }
 
