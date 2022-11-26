@@ -11,7 +11,6 @@
 		509FEA252812691900F1E35B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 509FEA242812691900F1E35B /* Assets.xcassets */; };
 		509FEA282812691900F1E35B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 509FEA262812691900F1E35B /* LaunchScreen.storyboard */; };
 		509FEA312812695B00F1E35B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 509FEA302812695B00F1E35B /* SnapKit */; };
-		509FEA342812697200F1E35B /* ApplicationNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 509FEA332812697200F1E35B /* ApplicationNavigation */; };
 		509FEA522812699100F1E35B /* CommonLocalization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 509FEA372812699000F1E35B /* CommonLocalization.strings */; };
 		509FEA532812699100F1E35B /* CommonLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509FEA392812699000F1E35B /* CommonLocalization.swift */; };
 		509FEA542812699100F1E35B /* RootViewModelImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509FEA3D2812699000F1E35B /* RootViewModelImpl.swift */; };
@@ -62,7 +61,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				509FEA312812695B00F1E35B /* SnapKit in Frameworks */,
-				509FEA342812697200F1E35B /* ApplicationNavigation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +200,6 @@
 			name = ApplicationNavigationExample;
 			packageProductDependencies = (
 				509FEA302812695B00F1E35B /* SnapKit */,
-				509FEA332812697200F1E35B /* ApplicationNavigation */,
 			);
 			productName = ApplicationNavigationExample;
 			productReference = 509FEA182812691800F1E35B /* ApplicationNavigationExample.app */;
@@ -235,7 +232,6 @@
 			mainGroup = 509FEA0F2812691800F1E35B;
 			packageReferences = (
 				509FEA2F2812695B00F1E35B /* XCRemoteSwiftPackageReference "SnapKit" */,
-				509FEA322812697200F1E35B /* XCRemoteSwiftPackageReference "ApplicationNavigation" */,
 			);
 			productRefGroup = 509FEA192812691800F1E35B /* Products */;
 			projectDirPath = "";
@@ -521,14 +517,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		509FEA322812697200F1E35B /* XCRemoteSwiftPackageReference "ApplicationNavigation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LudvigShtirner/ApplicationNavigation.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -536,11 +524,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 509FEA2F2812695B00F1E35B /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		509FEA332812697200F1E35B /* ApplicationNavigation */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 509FEA322812697200F1E35B /* XCRemoteSwiftPackageReference "ApplicationNavigation" */;
-			productName = ApplicationNavigation;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
