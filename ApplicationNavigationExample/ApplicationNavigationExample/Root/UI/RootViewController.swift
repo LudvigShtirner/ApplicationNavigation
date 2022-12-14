@@ -6,6 +6,7 @@
 //
 
 // Subprojects
+import LSUserInterface
 import SupportCode
 
 // Apple
@@ -21,10 +22,10 @@ final class RootViewController: UIViewController {
     
     // MARK: - UI
     private let stackView = UIStackView()
-    private let cancelButton = UIButton(type: .system)
-    private let modalOpeningButton = UIButton(type: .system)
-    private let pushOpeningButton = UIButton(type: .system)
-    private let fallOpeningButton = UIButton(type: .system)
+    private let cancelButton = BaseButton(type: .system)
+    private let modalOpeningButton = BaseButton(type: .system)
+    private let pushOpeningButton = BaseButton(type: .system)
+    private let fallOpeningButton = BaseButton(type: .system)
     
     // MARK: - Life Cycle
     init(input: RootViewModelInput,
@@ -66,15 +67,23 @@ final class RootViewController: UIViewController {
         
         stackView.addArrangedSubview(modalOpeningButton)
         modalOpeningButton.setTitle(RootLocalization.modal, for: .normal)
-        modalOpeningButton.addTarget(self, action: #selector(modalButtonClicked), for: .touchUpInside)
+        modalOpeningButton.shouldDo(on: .touchUpInside) { [weak self] in
+            self?.viewModel.modalButtonClicked()
+        }
         
         stackView.addArrangedSubview(pushOpeningButton)
         pushOpeningButton.setTitle(RootLocalization.push, for: .normal)
-        pushOpeningButton.addTarget(self, action: #selector(pushButtonClicked), for: .touchUpInside)
+        pushOpeningButton.shouldDo(on: .touchUpInside) { [weak self] in
+            self?.viewModel.pushButtonClicked()
+        }
+
         
         stackView.addArrangedSubview(fallOpeningButton)
         fallOpeningButton.setTitle(RootLocalization.fall, for: .normal)
-        fallOpeningButton.addTarget(self, action: #selector(fallButtonClicked), for: .touchUpInside)
+        fallOpeningButton.shouldDo(on: .touchUpInside) { [weak self] in
+            self?.viewModel.fallButtonClicked()
+        }
+
         
         view.addSubview(cancelButton)
         cancelButton.setTitle(RootLocalization.cancel, for: .normal)
@@ -102,19 +111,6 @@ final class RootViewController: UIViewController {
         stackView.snp.makeConstraints { make in
             make.left.right.centerY.equalToSuperview()
         }
-    }
-    
-    // MARK: - Actions
-    @objc private func modalButtonClicked() {
-        viewModel.modalButtonClicked()
-    }
-    
-    @objc private func pushButtonClicked() {
-        viewModel.pushButtonClicked()
-    }
-    
-    @objc private func fallButtonClicked() {
-        viewModel.fallButtonClicked()
     }
 }
 

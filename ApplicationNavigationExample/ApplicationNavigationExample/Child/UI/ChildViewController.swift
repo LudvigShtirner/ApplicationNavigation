@@ -52,9 +52,12 @@ final class ChildViewController: UIViewController {
     }
     
     private func setupUI() {
+        view.clipsToBounds = true
+        
         view.addSubview(backgroundImageView)
         backgroundImageView.image = UIImage(named: "wallpaper")
         backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.clipsToBounds = true
         
         view.addSubview(cancelButton)
         cancelButton.setTitle(RootLocalization.cancel, for: .normal)

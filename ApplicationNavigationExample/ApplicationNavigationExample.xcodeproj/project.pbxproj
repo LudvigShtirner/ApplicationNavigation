@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5044EF842932900D008A464D /* ApplicationNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 5044EF832932900D008A464D /* ApplicationNavigation */; };
 		509FEA1C2812691800F1E35B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509FEA1B2812691800F1E35B /* AppDelegate.swift */; };
 		509FEA252812691900F1E35B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 509FEA242812691900F1E35B /* Assets.xcassets */; };
 		509FEA282812691900F1E35B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 509FEA262812691900F1E35B /* LaunchScreen.storyboard */; };
@@ -28,6 +27,8 @@
 		509FEA5F2812699100F1E35B /* ChildCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509FEA4F2812699100F1E35B /* ChildCoordinator.swift */; };
 		509FEA602812699100F1E35B /* ChildFlowFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509FEA502812699100F1E35B /* ChildFlowFactory.swift */; };
 		509FEA612812699100F1E35B /* ChildModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509FEA512812699100F1E35B /* ChildModuleFactory.swift */; };
+		50D019D7294A5217002866AD /* ApplicationNavigation in Frameworks */ = {isa = PBXBuildFile; productRef = 50D019D6294A5217002866AD /* ApplicationNavigation */; };
+		50D019D9294A521A002866AD /* LSUserInterface in Frameworks */ = {isa = PBXBuildFile; productRef = 50D019D8294A521A002866AD /* LSUserInterface */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,8 @@
 		509FEA4F2812699100F1E35B /* ChildCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildCoordinator.swift; sourceTree = "<group>"; };
 		509FEA502812699100F1E35B /* ChildFlowFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildFlowFactory.swift; sourceTree = "<group>"; };
 		509FEA512812699100F1E35B /* ChildModuleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildModuleFactory.swift; sourceTree = "<group>"; };
+		50D019D2294A51A8002866AD /* ApplicationNavigation */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = ApplicationNavigation; path = ..; sourceTree = "<group>"; };
+		50D019D4294A51F3002866AD /* LSUserInterface */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = LSUserInterface; path = ../../LSUserInterface; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +64,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50D019D9294A521A002866AD /* LSUserInterface in Frameworks */,
 				509FEA312812695B00F1E35B /* SnapKit in Frameworks */,
-				5044EF842932900D008A464D /* ApplicationNavigation in Frameworks */,
+				50D019D7294A5217002866AD /* ApplicationNavigation in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,8 +76,10 @@
 		509FEA0F2812691800F1E35B = {
 			isa = PBXGroup;
 			children = (
+				50D019D1294A51A8002866AD /* Packages */,
 				509FEA1A2812691800F1E35B /* ApplicationNavigationExample */,
 				509FEA192812691800F1E35B /* Products */,
+				50D019D5294A5217002866AD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,6 +190,22 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		50D019D1294A51A8002866AD /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				50D019D2294A51A8002866AD /* ApplicationNavigation */,
+				50D019D4294A51F3002866AD /* LSUserInterface */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		50D019D5294A5217002866AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -202,7 +224,8 @@
 			name = ApplicationNavigationExample;
 			packageProductDependencies = (
 				509FEA302812695B00F1E35B /* SnapKit */,
-				5044EF832932900D008A464D /* ApplicationNavigation */,
+				50D019D6294A5217002866AD /* ApplicationNavigation */,
+				50D019D8294A521A002866AD /* LSUserInterface */,
 			);
 			productName = ApplicationNavigationExample;
 			productReference = 509FEA182812691800F1E35B /* ApplicationNavigationExample.app */;
@@ -235,7 +258,6 @@
 			mainGroup = 509FEA0F2812691800F1E35B;
 			packageReferences = (
 				509FEA2F2812695B00F1E35B /* XCRemoteSwiftPackageReference "SnapKit" */,
-				5044EF822932900D008A464D /* XCRemoteSwiftPackageReference "ApplicationNavigation" */,
 			);
 			productRefGroup = 509FEA192812691800F1E35B /* Products */;
 			projectDirPath = "";
@@ -513,14 +535,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5044EF822932900D008A464D /* XCRemoteSwiftPackageReference "ApplicationNavigation" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/LudvigShtirner/ApplicationNavigation";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		509FEA2F2812695B00F1E35B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -532,15 +546,18 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5044EF832932900D008A464D /* ApplicationNavigation */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5044EF822932900D008A464D /* XCRemoteSwiftPackageReference "ApplicationNavigation" */;
-			productName = ApplicationNavigation;
-		};
 		509FEA302812695B00F1E35B /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 509FEA2F2812695B00F1E35B /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		50D019D6294A5217002866AD /* ApplicationNavigation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ApplicationNavigation;
+		};
+		50D019D8294A521A002866AD /* LSUserInterface */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LSUserInterface;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
