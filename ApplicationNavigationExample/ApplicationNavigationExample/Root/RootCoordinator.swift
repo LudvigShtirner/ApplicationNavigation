@@ -16,7 +16,7 @@ final class RootCoordinator: BaseCoordinator {
     private let moduleFactory: RootModuleFactory
     private let childFlowFactory: ChildFlowFactory
     
-    // MARK: - Life Cycle
+    // MARK: - Inits
     init(moduleFactory: RootModuleFactory,
          childFlowFactory: ChildFlowFactory) {
         self.moduleFactory = moduleFactory

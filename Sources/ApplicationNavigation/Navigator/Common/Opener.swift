@@ -19,3 +19,12 @@ protocol Opener {
     func show(_ viewController: UIViewController,
               completion: VoidBlock?)
 }
+
+extension Opener {
+    /// Показать отображение
+    /// - Parameter viewController: контроллер отображения
+    func show(_ viewController: UIViewController) {
+        show(viewController,
+             completion: nil)
+    }
+}

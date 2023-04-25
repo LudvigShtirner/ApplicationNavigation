@@ -14,7 +14,7 @@ final class ChildViewModelImpl {
     // MARK: - Data
     private var closeAction: VoidBlock?
     
-    // MARK: - Life cycle
+    // MARK: - Inits
     init() {
         
     }

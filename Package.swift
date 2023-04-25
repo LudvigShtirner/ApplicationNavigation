@@ -14,6 +14,9 @@ let package = Package(
     dependencies: [
         .package(name: "SupportCode",
                  url: "https://github.com/LudvigShtirner/SupportCode.git",
+                 branch: "main"),
+        .package(name: "LSUserInterface",
+                 url: "https://github.com/LudvigShtirner/LSUserInterface.git",
                  branch: "main")
     ],
     targets: [
@@ -21,7 +24,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "ApplicationNavigation",
-            dependencies: ["SupportCode"]),
+            dependencies: ["SupportCode", "LSUserInterface"]),
         .testTarget(
             name: "ApplicationNavigationTests",
             dependencies: ["ApplicationNavigation"]),

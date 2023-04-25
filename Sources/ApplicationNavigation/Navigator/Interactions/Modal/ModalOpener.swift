@@ -21,7 +21,9 @@ final class ModalOpener: Opener {
     /// Стиль открытия
     private let modalPresentationStyle: UIModalPresentationStyle
     
-    // MARK: - Life Cycle
+    private let modalTransitionStyle: UIModalTransitionStyle
+    
+    // MARK: - Inits
     /// Конструктор навигатора для модального показа отображения
     /// - Parameters:
     ///   - presentingVC: исходный контроллер отображения
@@ -29,16 +31,19 @@ final class ModalOpener: Opener {
     ///   - modalPresentationStyle: Стиль открытия
     init(presentingVC: UIViewController,
          animated: Bool = true,
-         modalPresentationStyle: UIModalPresentationStyle = .fullScreen) {
+         modalPresentationStyle: UIModalPresentationStyle = .fullScreen,
+         modalTransitionStyle: UIModalTransitionStyle = .coverVertical) {
         self.presentingVC = presentingVC
         self.animated = animated
         self.modalPresentationStyle = modalPresentationStyle
+        self.modalTransitionStyle = modalTransitionStyle
     }
     
     // MARK: - Opener
     func show(_ viewController: UIViewController,
               completion: VoidBlock?) {
         viewController.modalPresentationStyle = modalPresentationStyle
+        viewController.modalTransitionStyle = modalTransitionStyle
         presentingVC?.present(viewController,
                               animated: animated,
                               completion: completion)

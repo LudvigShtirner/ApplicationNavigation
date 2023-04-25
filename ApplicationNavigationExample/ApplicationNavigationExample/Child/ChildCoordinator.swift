@@ -18,7 +18,7 @@ final class ChildCoordinator: BaseCoordinator {
     // MARK: - Data
     private let closerType: CloserType
     
-    // MARK: - Life Cycle
+    // MARK: - Inits
     init(moduleFactory: ChildModuleFactory,
          closerType: CloserType) {
         self.moduleFactory = moduleFactory

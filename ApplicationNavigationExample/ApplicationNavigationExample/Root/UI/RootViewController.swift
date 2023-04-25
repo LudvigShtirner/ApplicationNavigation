@@ -27,7 +27,7 @@ final class RootViewController: UIViewController {
     private let pushOpeningButton = BaseButton(type: .system)
     private let fallOpeningButton = BaseButton(type: .system)
     
-    // MARK: - Life Cycle
+    // MARK: - Inits
     init(input: RootViewModelInput,
          output: RootViewModelOutput) {
         self.viewModel = input
@@ -118,18 +118,11 @@ final class RootViewController: UIViewController {
 #if canImport(SwiftUI)
 import SwiftUI
 
-struct RootViewControllerContainer: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> RootViewController {
-        return RootModuleFactoryImpl().buildModule().viewController
-    }
-    
-    func updateUIViewController(_ uiView: RootViewController,
-                                context: Context) {}
-}
-
 struct RootViewControllerContainer_Previews: PreviewProvider {
     static var previews: some View {
-        RootViewControllerContainer()
+        SwiftUIVCPreview {
+            RootModuleFactoryImpl().buildModule().viewController
+        }
             .previewLayout(.device)
             .edgesIgnoringSafeArea(.vertical)
     }

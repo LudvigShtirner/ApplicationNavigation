@@ -14,7 +14,7 @@ final class FallCloserAnimator: NSObject {
     /// Длительность анимации
     private let duration: TimeInterval
     
-    // MARK: - Life Cycle
+    // MARK: - Inits
     /// Конструктор аниматора
     /// - Parameter duration: Длительность анимации
     init(duration: TimeInterval) {

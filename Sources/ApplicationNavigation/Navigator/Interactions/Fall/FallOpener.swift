@@ -21,7 +21,7 @@ final class FallOpener: NSObject, Opener {
     /// Кастомный аниматор открытия
     private let fallOpenerAnimator: FallOpenerAnimator
     
-    // MARK: - Life Cycle
+    // MARK: - Inits
     /// Конструктор навигатора для модального показа отображения
     /// - Parameters:
     ///   - presentingVC: исходный контроллер отображения

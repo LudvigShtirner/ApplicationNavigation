@@ -17,7 +17,7 @@ final class FallCloser: NSObject, Closer {
     /// Кастомный аниматор скрытия
     private let fallCloserAnimator: FallCloserAnimator
     
-    // MARK: - Life Cycle
+    // MARK: - Inits
     /// Конструктор навигатора модального скрытия отображения
     /// - Parameters:
     ///   - animated: флаг наличия анимации

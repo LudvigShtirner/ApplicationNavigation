@@ -19,7 +19,7 @@ final class NavigationCloser: Closer {
     /// Флаг наличия анимации
     private let animated: Bool
     
-    // MARK: - Life cycle
+    // MARK: - Inits
     /// Конструктор скрытия контроллера из стека навигации
     /// - Parameters:
     ///   - navigationController: Стек навигации

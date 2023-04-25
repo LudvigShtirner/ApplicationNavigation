@@ -21,7 +21,7 @@ final class NavigationOpener: Opener {
     /// Флаг замены текущего стека контроллера
     private let replaceStack: Bool
     
-    // MARK: - Life cycle
+    // MARK: - Inits
     /// Конструктор навигатора добавления контроллера в стек навигации
     /// - Parameters:
     ///   - navigationController: Стек навигации

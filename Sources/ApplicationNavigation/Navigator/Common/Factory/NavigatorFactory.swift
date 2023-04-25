@@ -21,7 +21,7 @@ protocol NavigatorFactory: AnyObject {
 
 /// Реализация фабрики навигаторов
 final class NavigatorFactoryImpl: NavigatorFactory {
-    // MARK: - Life Cycle
+    // MARK: - Inits
     /// Синглтон фабрики для уменьшения потребления памяти
     static let shared = NavigatorFactoryImpl()
     /// Приватный конструктор для избегания создания дополнительных инстансов
@@ -39,6 +39,8 @@ final class NavigatorFactoryImpl: NavigatorFactory {
             return ModalCloser(animated: config.animated)
         case .fall(let config):
             return FallCloser(duration: config.duration)
+        case .tab(let config):
+            return TabCloser(config: config)
         }
     }
     
@@ -53,10 +55,13 @@ final class NavigatorFactoryImpl: NavigatorFactory {
         case .modal(let config):
             return ModalOpener(presentingVC: config.presentingController,
                                animated: config.animated,
-                               modalPresentationStyle: config.modalPresentationStyle)
+                               modalPresentationStyle: config.modalPresentationStyle,
+                               modalTransitionStyle: config.modalTransitionStyle)
         case .fall(let config):
             return FallOpener(presentingVC: config.presentingController,
                               duration: config.duration)
+        case .tab(let config):
+            return TabOpener(config: config)
         }
     }
 }

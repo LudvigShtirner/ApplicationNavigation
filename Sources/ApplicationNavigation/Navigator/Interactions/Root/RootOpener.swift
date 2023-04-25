@@ -17,8 +17,8 @@ final class RootOpener: Opener {
     /// Окно отображений
     private let window: UIWindow
     
-    // MARK: - Life cycle
-    /// Констурктор навигатора
+    // MARK: - Inits
+    /// Конструктор навигатора
     /// - Parameter window: Окно отображений
     public init(window: UIWindow) {
         self.window = window

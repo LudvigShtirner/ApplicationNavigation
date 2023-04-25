@@ -17,7 +17,7 @@ final class RootViewModelImpl {
     private var modalAction: VoidBlock?
     private var fallAction: VoidBlock?
     
-    // MARK: - Life cycle
+    // MARK: - Inits
     init() {
         
     }

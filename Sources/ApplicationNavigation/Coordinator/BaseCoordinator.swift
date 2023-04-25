@@ -23,7 +23,7 @@ open class BaseCoordinator {
     /// Блок операций 
     private var completionHandler: VoidBlock?
     
-    // MARK: - Life cycle
+    // MARK: - Inits
     /// Конструктор базового класса
     public init() {
         navigatorFactory = NavigatorFactoryImpl.shared
@@ -51,9 +51,9 @@ open class BaseCoordinator {
             self?.removeDependency(coordinator)
         }
         let viewController = coordinator.createModule()
-        let navigator = navigatorFactory.makeOpener(type: openType)
-        navigator.show(viewController,
-                       completion: nil)
+        let opener = navigatorFactory.makeOpener(type: openType)
+        opener.show(viewController,
+                    completion: nil)
     }
     
     /// Завершить работу модуля
@@ -64,12 +64,12 @@ open class BaseCoordinator {
     public func finishFlow(viewController: UIViewController,
                            closeType: CloserType,
                            completion: VoidBlock? = nil) {
-        let navigator = navigatorFactory.makeCloser(type: closeType)
-        navigator.hide(viewController,
-                       completion: { [weak self] in
-                        completion?()
-                        self?.completionHandler?()
-                       })
+        let closer = navigatorFactory.makeCloser(type: closeType)
+        closer.hide(viewController,
+                    completion: { [weak self] in
+            completion?()
+            self?.completionHandler?()
+        })
     }
     
     // MARK: - Private methods

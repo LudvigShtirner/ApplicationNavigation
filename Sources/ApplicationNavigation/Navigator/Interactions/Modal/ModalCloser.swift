@@ -17,7 +17,7 @@ final class ModalCloser: Closer {
     /// Флаг анимации при скрытии
     private let animated: Bool
     
-    // MARK: - Life Cycle
+    // MARK: - Inits
     /// Конструктор навигатора модального скрытия отображения
     /// - Parameters:
     ///   - animated: флаг наличия анимации

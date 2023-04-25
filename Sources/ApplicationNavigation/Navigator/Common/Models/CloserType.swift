@@ -18,53 +18,6 @@ public enum CloserType {
     case modal(ModalCloseConfig)
     /// Скрытие контроллера падающей анимацией
     case fall(FallCloseConfig)
-}
-
-/// Модель для настройки модального перехода
-public struct ModalCloseConfig {
-    // MARK: - Data
-    /// Флаг наличия анимации
-    let animated: Bool
-    
-    // MARK: - Life cycle
-    /// Конструктор создания модели
-    /// - Parameters:
-    ///   - animated: флаг анимации
-    public init(animated: Bool = true) {
-        self.animated = animated
-    }
-}
-
-/// Модель для настройки закрытия
-public struct PushCloseConfig {
-    // MARK: - Data
-    /// Стек контроллеров
-    let navigationController: UINavigationController
-    /// Флаг наличия анимации
-    let animated: Bool
-    
-    // MARK: - Life cycle
-    /// Конструктор создания модели
-    /// - Parameters:
-    ///   - navigationController: Стек контроллеров
-    ///   - animated: флаг анимации
-    public init(navigationController: UINavigationController,
-                animated: Bool = true) {
-        self.animated = animated
-        self.navigationController = navigationController
-    }
-}
-
-/// Модель для настройки падающей анимации
-public struct FallCloseConfig {
-    // MARK: - Data
-    /// Длительность анимации
-    let duration: TimeInterval
-    
-    // MARK: - Life cycle
-    /// Конструктор создания модели
-    /// - Parameter duration: Длительность анимации
-    public init(duration: TimeInterval) {
-        self.duration = duration
-    }
+    /// Скрытие контроллера из списка табов
+    case tab(TabCloseConfig)
 }
