@@ -5,9 +5,8 @@
 //  Created by Алексей Филиппов on 24.09.2021.
 //
 
-// Subprojects
+// SPM
 import SupportCode
-
 // Apple
 import UIKit
 
@@ -41,11 +40,26 @@ final class ModalOpener: Opener {
     
     // MARK: - Opener
     func show(_ viewController: UIViewController,
-              completion: VoidBlock?) {
+              completion: ResultBlock<Void>?) {
+        guard let presentingVC else {
+            completion?(.failure(ModalOpenError.noPresentingVC))
+            return
+        }
+        guard presentingVC.presentedViewController == nil else {
+            completion?(.failure(ModalOpenError.hasAlreadyPresentedVC))
+            return
+        }
         viewController.modalPresentationStyle = modalPresentationStyle
         viewController.modalTransitionStyle = modalTransitionStyle
-        presentingVC?.present(viewController,
-                              animated: animated,
-                              completion: completion)
+        presentingVC.present(viewController,
+                             animated: animated,
+                             completion: {
+            completion?(.success)
+        })
     }
+}
+
+public enum ModalOpenError: Error {
+    case noPresentingVC
+    case hasAlreadyPresentedVC
 }

@@ -16,7 +16,7 @@ struct TabOpener: Opener {
     
     // MARK: - Opener
     func show(_ viewController: UIViewController,
-              completion: VoidBlock?) {
+              completion: ResultBlock<Void>?) {
         if let navController = viewController as? UINavigationController {
             navController.topViewController?.title = config.title
         } else {
@@ -25,7 +25,17 @@ struct TabOpener: Opener {
         viewController.tabBarItem = config.tabBarItem
         let currentTabs = config.tabBar.viewControllers ?? []
         let updatedTabs = currentTabs + [viewController]
+        
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({ [weak viewController] in
+            if viewController?.tabBarController != nil {
+                completion?(.success)
+            } else {
+                completion?(.failure(PushError.isNotInStack))
+            }
+        })
         config.tabBar.setViewControllers(updatedTabs,
                                          animated: config.animated)
+        CATransaction.commit()
     }
 }

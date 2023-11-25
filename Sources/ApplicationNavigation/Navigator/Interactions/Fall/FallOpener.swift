@@ -38,12 +38,22 @@ final class FallOpener: NSObject, Opener {
     
     // MARK: - Opener
     func show(_ viewController: UIViewController,
-              completion: VoidBlock?) {
+              completion: ResultBlock<Void>?) {
+        guard let presentingVC else {
+            completion?(.failure(ModalOpenError.noPresentingVC))
+            return
+        }
+        guard presentingVC.presentedViewController == nil else {
+            completion?(.failure(ModalOpenError.hasAlreadyPresentedVC))
+            return
+        }
         viewController.modalPresentationStyle = modalPresentationStyle
         viewController.transitioningDelegate = self
-        presentingVC?.present(viewController,
-                              animated: true,
-                              completion: completion)
+        presentingVC.present(viewController,
+                             animated: true,
+                             completion: {
+            completion?(.success)
+        })
     }
 }
 

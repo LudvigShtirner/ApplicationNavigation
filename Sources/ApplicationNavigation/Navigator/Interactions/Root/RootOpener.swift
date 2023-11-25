@@ -26,9 +26,9 @@ final class RootOpener: Opener {
     
     // MARK: - Opener
     public func show(_ viewController: UIViewController,
-                     completion: VoidBlock?) {
+                     completion: ResultBlock<Void>?) {
         window.rootViewController = viewController
         window.makeKeyAndVisible()
-        completion?()
+        completion?(.success)
     }
 }

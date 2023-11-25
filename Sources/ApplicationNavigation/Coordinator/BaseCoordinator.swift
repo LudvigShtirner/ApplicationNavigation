@@ -12,7 +12,7 @@ import SupportCode
 import UIKit
 
 /// Базовый класс координатора
-open class BaseCoordinator {
+open class BaseCoordinator: NSObject {
     // MARK: - Dependencies
     /// Фабрика навигаторов
     private let navigatorFactory: NavigatorFactory
@@ -25,8 +25,9 @@ open class BaseCoordinator {
     
     // MARK: - Inits
     /// Конструктор базового класса
-    public init() {
+    public override init() {
         navigatorFactory = NavigatorFactoryImpl.shared
+        super.init()
     }
     
     // MARK: - Must been overrided method

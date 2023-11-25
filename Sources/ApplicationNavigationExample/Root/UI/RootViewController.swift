@@ -67,20 +67,20 @@ final class RootViewController: UIViewController {
         
         stackView.addArrangedSubview(modalOpeningButton)
         modalOpeningButton.setTitle(RootLocalization.modal, for: .normal)
-        modalOpeningButton.shouldDo(on: .touchUpInside) { [weak self] in
+        modalOpeningButton.onEvent(.touchUpInside) { [weak self] in
             self?.viewModel.modalButtonClicked()
         }
         
         stackView.addArrangedSubview(pushOpeningButton)
         pushOpeningButton.setTitle(RootLocalization.push, for: .normal)
-        pushOpeningButton.shouldDo(on: .touchUpInside) { [weak self] in
+        pushOpeningButton.onEvent(.touchUpInside) { [weak self] in
             self?.viewModel.pushButtonClicked()
         }
 
         
         stackView.addArrangedSubview(fallOpeningButton)
         fallOpeningButton.setTitle(RootLocalization.fall, for: .normal)
-        fallOpeningButton.shouldDo(on: .touchUpInside) { [weak self] in
+        fallOpeningButton.onEvent(.touchUpInside) { [weak self] in
             self?.viewModel.fallButtonClicked()
         }
 

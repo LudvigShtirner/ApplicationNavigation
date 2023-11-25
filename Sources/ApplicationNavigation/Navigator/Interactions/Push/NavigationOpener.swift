@@ -37,9 +37,15 @@ final class NavigationOpener: Opener {
     
     // MARK: - Navigator
     func show(_ viewController: UIViewController,
-              completion: VoidBlock?) {
+              completion: ResultBlock<Void>?) {
         CATransaction.begin()
-        CATransaction.setCompletionBlock(completion)
+        CATransaction.setCompletionBlock({ [weak viewController] in
+            if viewController?.navigationController != nil {
+                completion?(.success)
+            } else {
+                completion?(.failure(PushError.isNotInStack))
+            }
+        })
         defer {
             CATransaction.commit()
         }
@@ -51,4 +57,8 @@ final class NavigationOpener: Opener {
         navigationController?.pushViewController(viewController,
                                                  animated: animated)
     }
+}
+
+public enum PushError: Error {
+    case isNotInStack
 }

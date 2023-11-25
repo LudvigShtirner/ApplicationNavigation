@@ -5,9 +5,8 @@
 //  Created by Алексей Филиппов on 24.09.2021.
 //
 
-// Subprojects
+// SPM
 import SupportCode
-
 // Apple
 import UIKit
 
@@ -17,7 +16,7 @@ protocol Opener {
     /// - Parameter viewController: контроллер отображения
     /// - Parameter completion: блок, вызываемый после показа
     func show(_ viewController: UIViewController,
-              completion: VoidBlock?)
+              completion: ResultBlock<Void>?)
 }
 
 extension Opener {

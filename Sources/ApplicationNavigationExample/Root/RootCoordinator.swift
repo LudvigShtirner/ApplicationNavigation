@@ -66,6 +66,8 @@ final class RootCoordinator: BaseCoordinator {
             closerType = .push(.init(navigationController: navigationViewController))
         case .fall(_):
             closerType = .fall(.init(duration: 0.3))
+        case .tab(_):
+            return
         }
         let coordinator = childFlowFactory.makeCoordinator(closerType: closerType)
         runNextFlow(coordinator: coordinator,

@@ -55,8 +55,8 @@ final class ChildViewController: BaseViewController {
         backgroundImageView.clipsToBounds = true
         
         cancelButton.insert(into: view)
-            .setParameter(\.titleSet, with: .init(normal: RootLocalization.cancel))
-            .shouldDo(on: .touchUpInside) { [weak self] in
+            .setParameter(\.titleSet, with: .init(normalText: RootLocalization.cancel))
+            .onEvent(.touchUpInside) { [weak self] in
                 self?.viewModel.closeButtonClicked()
             }
     }

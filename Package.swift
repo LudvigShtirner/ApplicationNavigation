@@ -3,30 +3,49 @@
 
 import PackageDescription
 
+private let applicationNavigation = "ApplicationNavigation"
+private let applicationNavigationTests = "ApplicationNavigationTests"
+private let applicationNavigationExample = "ApplicationNavigationExample"
+
+private let supportCode = "SupportCode"
+private let supportCodeURL = "https://github.com/LudvigShtirner/SupportCode.git"
+
+private let userInterface = "LSUserInterface"
+private let userInterfaceURL = "https://github.com/LudvigShtirner/LSUserInterface.git"
+
 let package = Package(
-    name: "ApplicationNavigation",
+    name: applicationNavigation,
+    defaultLocalization: "en",
     platforms: [.iOS(.v13)],
     products: [
-        .library(
-            name: "ApplicationNavigation",
-            targets: ["ApplicationNavigation"]),
+        .library(name: applicationNavigation,
+                 targets: [applicationNavigation]),
+        .executable(name: applicationNavigationExample,
+                    targets: [applicationNavigationExample])
     ],
     dependencies: [
-        .package(name: "SupportCode",
-                 url: "https://github.com/LudvigShtirner/SupportCode.git",
+        .package(name: supportCode,
+                 url: supportCodeURL,
                  branch: "main"),
-        .package(name: "LSUserInterface",
-                 url: "https://github.com/LudvigShtirner/LSUserInterface.git",
+        .package(name: userInterface,
+                 url: userInterfaceURL,
                  branch: "main")
     ],
     targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages this package depends on.
-        .target(
-            name: "ApplicationNavigation",
-            dependencies: ["SupportCode", "LSUserInterface"]),
-        .testTarget(
-            name: "ApplicationNavigationTests",
-            dependencies: ["ApplicationNavigation"]),
+        .target(name: applicationNavigation,
+                dependencies: [
+                    .byName(name: supportCode),
+                    .byName(name: userInterface)
+                ]),
+        .executableTarget(name: applicationNavigationExample,
+                          dependencies: [
+                                .byName(name: supportCode),
+                                .byName(name: userInterface),
+                                .byName(name: applicationNavigation)
+                          ]),
+        .testTarget(name: applicationNavigationTests,
+                    dependencies: [
+                        .byName(name: applicationNavigation)
+                    ]),
     ]
 )
