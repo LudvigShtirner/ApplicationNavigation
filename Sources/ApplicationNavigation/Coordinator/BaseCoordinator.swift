@@ -20,13 +20,16 @@ open class BaseCoordinator: NSObject {
     // MARK: - Data
     /// Массив дочерних кординаторов
     private var childCoordinators: [BaseCoordinator] = []
-    /// Блок операций 
+    /// Параметр скрытия
+    private let closeType: CloserType
+    /// Блок операций
     private var completionHandler: VoidBlock?
     
     // MARK: - Inits
     /// Конструктор базового класса
-    public override init() {
-        navigatorFactory = NavigatorFactoryImpl.shared
+    public init(closeType: CloserType) {
+        navigatorFactory = NavigatorFactoryBase.shared
+        self.closeType = closeType
         super.init()
     }
     
@@ -42,9 +45,11 @@ open class BaseCoordinator: NSObject {
     /// - Parameters:
     ///   - coordinator: координатор нового модуля
     ///   - openType: тип открытия нового модуля
+    ///   - presentCompletion: блок действий при отображении viewController
     ///   - flowCompletion: блок действий при уничтожении координатора
     public func runNextFlow(coordinator: BaseCoordinator,
                             openType: OpenerType,
+                            presentCompletion: ResultBlock<Void>? = nil,
                             flowCompletion: VoidBlock? = nil) {
         addDependency(coordinator)
         coordinator.completionHandler = { [weak self, weak coordinator] in
@@ -54,7 +59,7 @@ open class BaseCoordinator: NSObject {
         let viewController = coordinator.createModule()
         let opener = navigatorFactory.makeOpener(type: openType)
         opener.show(viewController,
-                    completion: nil)
+                    completion: presentCompletion)
     }
     
     /// Завершить работу модуля
@@ -63,7 +68,6 @@ open class BaseCoordinator: NSObject {
     ///   - closeType: тип закрытия нового модуля
     ///   - completion: блок действий при скрытии контроллера
     public func finishFlow(viewController: UIViewController,
-                           closeType: CloserType,
                            completion: VoidBlock? = nil) {
         let closer = navigatorFactory.makeCloser(type: closeType)
         closer.hide(viewController,

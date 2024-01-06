@@ -32,7 +32,7 @@ final class FallOpener: NSObject, Opener {
          modalPresentationStyle: UIModalPresentationStyle = .fullScreen) {
         self.presentingVC = presentingVC
         self.modalPresentationStyle = modalPresentationStyle
-        self.fallOpenerAnimator = .init(duration: duration)
+        self.fallOpenerAnimator = FallOpenerAnimator(duration: duration)
         super.init()
     }
     

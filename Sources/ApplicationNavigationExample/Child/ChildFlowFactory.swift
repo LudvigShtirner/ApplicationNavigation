@@ -9,14 +9,14 @@
 import ApplicationNavigation
 
 protocol ChildFlowFactory {
-    func makeCoordinator(closerType: CloserType) -> ChildCoordinator
+    func makeCoordinator(closeType: CloserType) -> ChildCoordinator
 }
 
 final class ChildFlowFactoryImpl: ChildFlowFactory {
     // MARK: - ChildFlowFactory
-    func makeCoordinator(closerType: CloserType) -> ChildCoordinator {
+    func makeCoordinator(closeType: CloserType) -> ChildCoordinator {
         let moduleFactory = ChildModuleFactoryImpl()
         return ChildCoordinator(moduleFactory: moduleFactory,
-                                closerType: closerType)
+                                closeType: closeType)
     }
 }

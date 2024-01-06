@@ -40,9 +40,9 @@ extension FallCloserAnimator: UIViewControllerAnimatedTransitioning {
                                               timingParameters: kFallAnimationTimingFunction)
         animator.scrubsLinearly = false
         animator.addAnimations {
-            fromVC.view.frame = .init(origin: .init(x: .zero,
-                                                    y: -fromVCFrame.size.height),
-                                      size: fromVCFrame.size)
+            fromVC.view.frame = CGRect(origin: CGPoint(x: .zero,
+                                                       y: -fromVCFrame.size.height),
+                                       size: fromVCFrame.size)
         }
         animator.addCompletion { position in
             let success = position == .end

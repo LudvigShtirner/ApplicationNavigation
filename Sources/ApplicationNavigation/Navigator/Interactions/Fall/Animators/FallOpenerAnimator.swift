@@ -41,13 +41,13 @@ extension FallOpenerAnimator: UIViewControllerAnimatedTransitioning {
         
         containerView.addSubview(fallingView)
         
-        fallingView.frame = .init(origin: .init(x: .zero,
-                                                y: -finalFrame.size.height),
-                                  size: finalFrame.size)
+        fallingView.frame = CGRect(origin: CGPoint(x: .zero,
+                                                   y: -finalFrame.size.height),
+                                   size: finalFrame.size)
         
         let animator = UIViewPropertyAnimator(duration: duration,
                                               timingParameters: kFallAnimationTimingFunction)
-        animator.scrubsLinearly = false
+//        animator.scrubsLinearly = false
         animator.addAnimations {
             fallingView.frame = finalFrame
         }

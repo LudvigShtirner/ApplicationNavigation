@@ -22,7 +22,7 @@ final class FallCloser: NSObject, Closer {
     /// - Parameters:
     ///   - animated: флаг наличия анимации
     init(duration: TimeInterval) {
-        self.fallCloserAnimator = .init(duration: duration)
+        self.fallCloserAnimator = FallCloserAnimator(duration: duration)
         super.init()
     }
     

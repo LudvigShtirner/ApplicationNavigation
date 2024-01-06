@@ -15,15 +15,11 @@ final class ChildCoordinator: BaseCoordinator {
     // MARK: - Dependencies
     private let moduleFactory: ChildModuleFactory
     
-    // MARK: - Data
-    private let closerType: CloserType
-    
     // MARK: - Inits
     init(moduleFactory: ChildModuleFactory,
-         closerType: CloserType) {
+         closeType: CloserType) {
         self.moduleFactory = moduleFactory
-        self.closerType = closerType
-        super.init()
+        super.init(closeType: closeType)
     }
     
     // MARK: - BaseCoordinator
@@ -32,8 +28,7 @@ final class ChildCoordinator: BaseCoordinator {
         let viewController = module.viewController
         module.coordinatorInteractor.onClose { [weak self, weak viewController] in
             guard let self = self, let viewController = viewController else { return }
-            self.finishFlow(viewController: viewController,
-                            closeType: self.closerType)
+            self.finishFlow(viewController: viewController)
         }
         return viewController
     }

@@ -17,7 +17,7 @@ final class ChildViewController: BaseViewController {
     private let viewModel: ChildViewModelInput
     
     // MARK: - UI
-    private let cancelButton = DesignedButton(type: .system)
+    private let cancelButton = DesignedButton()
     private let backgroundImageView = DesignedImageView()
     
     // MARK: - Inits
@@ -27,10 +27,6 @@ final class ChildViewController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
         
         bindToViewModel(output)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - Overrides methods
@@ -55,7 +51,7 @@ final class ChildViewController: BaseViewController {
         backgroundImageView.clipsToBounds = true
         
         cancelButton.insert(into: view)
-            .setParameter(\.titleSet, with: .init(normalText: RootLocalization.cancel))
+            .setParameter(\.titleSet, with: TitleSet(normalText: RootLocalization.cancel))
             .onEvent(.touchUpInside) { [weak self] in
                 self?.viewModel.closeButtonClicked()
             }

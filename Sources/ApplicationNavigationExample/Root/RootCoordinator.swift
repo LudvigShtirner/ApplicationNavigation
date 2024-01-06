@@ -21,7 +21,7 @@ final class RootCoordinator: BaseCoordinator {
          childFlowFactory: ChildFlowFactory) {
         self.moduleFactory = moduleFactory
         self.childFlowFactory = childFlowFactory
-        super.init()
+        super.init(closeType: .root)
     }
     
     // MARK: - BaseCoordinator
@@ -31,8 +31,7 @@ final class RootCoordinator: BaseCoordinator {
         navigationViewController.isNavigationBarHidden = true
         module.coordinatorInteractor.onClose { [weak self, weak navigationViewController] in
             guard let navigationViewController = navigationViewController else { return }
-            self?.finishFlow(viewController: navigationViewController,
-                             closeType: .root)
+            self?.finishFlow(viewController: navigationViewController)
         }
         module.coordinatorInteractor.onModal { [weak self, weak navigationViewController] in
             guard let navigationViewController = navigationViewController else { return }
@@ -56,20 +55,20 @@ final class RootCoordinator: BaseCoordinator {
     // MARK: - Private methods
     private func runChildFlow(openerType: OpenerType,
                               navigationViewController: UINavigationController) {
-        var closerType: CloserType
+        var closeType: CloserType
         switch openerType {
         case .root:
-            closerType = .root
+            closeType = .root
         case .modal:
-            closerType = .modal(.init(animated: true))
+            closeType = .modal(.init(animated: true))
         case .push:
-            closerType = .push(.init(navigationController: navigationViewController))
+            closeType = .push(.init(navigationController: navigationViewController))
         case .fall(_):
-            closerType = .fall(.init(duration: 0.3))
+            closeType = .fall(.init(duration: 0.3))
         case .tab(_):
             return
         }
-        let coordinator = childFlowFactory.makeCoordinator(closerType: closerType)
+        let coordinator = childFlowFactory.makeCoordinator(closeType: closeType)
         runNextFlow(coordinator: coordinator,
                     openType: openerType)
     }

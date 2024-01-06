@@ -20,10 +20,10 @@ protocol NavigatorFactory: AnyObject {
 }
 
 /// Реализация фабрики навигаторов
-final class NavigatorFactoryImpl: NavigatorFactory {
+final class NavigatorFactoryBase: NavigatorFactory {
     // MARK: - Inits
     /// Синглтон фабрики для уменьшения потребления памяти
-    static let shared = NavigatorFactoryImpl()
+    static let shared = NavigatorFactoryBase()
     /// Приватный конструктор для избегания создания дополнительных инстансов
     private init() { }
     

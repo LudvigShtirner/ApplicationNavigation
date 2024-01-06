@@ -2,11 +2,29 @@
   "object": {
     "pins": [
       {
+        "package": "LSUserInterface",
+        "repositoryURL": "https://github.com/LudvigShtirner/LSUserInterface.git",
+        "state": {
+          "branch": "main",
+          "revision": "778ed27c18a0557e4fb1c305aa74b6cc20060aab",
+          "version": null
+        }
+      },
+      {
+        "package": "SnapKit",
+        "repositoryURL": "https://github.com/SnapKit/SnapKit.git",
+        "state": {
+          "branch": null,
+          "revision": "e74fe2a978d1216c3602b129447c7301573cc2d8",
+          "version": "5.7.0"
+        }
+      },
+      {
         "package": "SupportCode",
         "repositoryURL": "https://github.com/LudvigShtirner/SupportCode.git",
         "state": {
           "branch": "main",
-          "revision": "1069dc0f857518b382c68970708f7ce0ef6ef72c",
+          "revision": "2c77cbea6546a4f7cae44c60072033b75a93e1af",
           "version": null
         }
       }

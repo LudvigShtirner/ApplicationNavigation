@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     private let flowFactory: RootFlowFactory = RootFlowFactoryImpl()
-    private var appCoordinator = BaseCoordinator()
+    private var appCoordinator = BaseCoordinator(closeType: .root)
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
