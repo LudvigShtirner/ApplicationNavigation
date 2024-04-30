@@ -11,7 +11,7 @@ import ApplicationNavigation
 // Apple
 import UIKit
 
-final class ChildCoordinator: BaseCoordinator {
+final class ChildCoordinator: BaseCoordinator, IBaseCoordinator {
     // MARK: - Dependencies
     private let moduleFactory: ChildModuleFactory
     
@@ -22,8 +22,8 @@ final class ChildCoordinator: BaseCoordinator {
         super.init(closeType: closeType)
     }
     
-    // MARK: - BaseCoordinator
-    override func createModule() -> UIViewController {
+    // MARK: - IBaseCoordinator
+    func createModule() -> UIViewController {
         let module = moduleFactory.buildModule()
         let viewController = module.viewController
         module.coordinatorInteractor.onClose { [weak self, weak viewController] in

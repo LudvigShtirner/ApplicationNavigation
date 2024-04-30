@@ -18,7 +18,11 @@ final class ChildViewController: BaseViewController {
     
     // MARK: - UI
     private let cancelButton = DesignedButton()
+        .setTitle(.init(normalText: RootLocalization.cancel))
     private let backgroundImageView = DesignedImageView()
+        .setImage(UIImage(named: "wallpaper")!)
+        .setContentMode(.scaleAspectFill)
+        .setClipsToBounds(true)
     
     // MARK: - Inits
     init(input: ChildViewModelInput,
@@ -44,17 +48,11 @@ final class ChildViewController: BaseViewController {
     // MARK: - BaseViewController
     override func setupUI() {
         view.clipsToBounds = true
-        
-        backgroundImageView.insert(into: view)
-            .setParameter(\.image, with: UIImage(named: "wallpaper")!)
-            .setParameter(\.contentMode, with: .scaleAspectFill)
-        backgroundImageView.clipsToBounds = true
-        
-        cancelButton.insert(into: view)
-            .setParameter(\.titleSet, with: TitleSet(normalText: RootLocalization.cancel))
-            .onEvent(.touchUpInside) { [weak self] in
-                self?.viewModel.closeButtonClicked()
-            }
+        view.addSubview(backgroundImageView)
+        view.addSubview(cancelButton)
+        cancelButton.onEvent(.touchUpInside) { [weak self] in
+            self?.viewModel.closeButtonClicked()
+        }
     }
     
     override func setupConstraints() {

@@ -5,9 +5,8 @@
 //  Created by Алексей Филиппов on 22.04.2022.
 //
 
-// Subprojects
+// SPM
 import ApplicationNavigation
-
 // Apple
 import UIKit
 
@@ -17,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     private let flowFactory: RootFlowFactory = RootFlowFactoryImpl()
-    private var appCoordinator = BaseCoordinator(closeType: .root)
+    private var appCoordinator = ApplicationNavigation.RootCoordinator(closeType: .root)
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

@@ -10,8 +10,14 @@ import UIKit
 
 public struct CustomBottomSheetOpenConfig {
     
+    public init() {
+        
+    }
 }
 
 public struct CustomBottomSheetCloseConfig {
     
+    public init() {
+        
+    }
 }

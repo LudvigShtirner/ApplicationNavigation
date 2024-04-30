@@ -11,7 +11,7 @@ import ApplicationNavigation
 // Apple
 import UIKit
 
-final class RootCoordinator: BaseCoordinator {
+final class RootCoordinator: BaseCoordinator, IBaseCoordinator {
     // MARK: - Dependencies
     private let moduleFactory: RootModuleFactory
     private let childFlowFactory: ChildFlowFactory
@@ -24,8 +24,8 @@ final class RootCoordinator: BaseCoordinator {
         super.init(closeType: .root)
     }
     
-    // MARK: - BaseCoordinator
-    override func createModule() -> UIViewController {
+    // MARK: - IBaseCoordinator
+    func createModule() -> UIViewController {
         let module = moduleFactory.buildModule()
         let navigationViewController = UINavigationController(rootViewController: module.viewController)
         navigationViewController.isNavigationBarHidden = true
@@ -67,6 +67,10 @@ final class RootCoordinator: BaseCoordinator {
             closeType = .fall(.init(duration: 0.3))
         case .tab(_):
             return
+        case .bottomSheet(_):
+            closeType = .bottomSheet(.init(presentingController: navigationViewController))
+        case .customBottomSheet(_):
+            closeType = .customBottomSheet(.init())
         }
         let coordinator = childFlowFactory.makeCoordinator(closeType: closeType)
         runNextFlow(coordinator: coordinator,
