@@ -20,4 +20,8 @@ public enum OpenerType {
     case fall(FallOpenConfig)
     /// Показ контроллера в списке табов
     case tab(TabOpenConfig)
+    /// Показ контроллера с помощью боттом шит
+    case bottomSheet(BottomSheetOpenConfig)
+    /// Показ контроллера на кастомном боттом шите
+    case customBottomSheet(CustomBottomSheetOpenConfig)
 }

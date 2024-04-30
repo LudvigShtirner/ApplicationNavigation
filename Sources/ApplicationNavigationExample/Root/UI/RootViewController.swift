@@ -5,7 +5,7 @@
 //  Created by Алексей Филиппов on 06.11.2021.
 //
 
-// Subprojects
+// SPM
 import LSUserInterface
 import SupportCode
 
@@ -16,7 +16,7 @@ import UIKit
 import SnapKit
 
 /// Контроллер отображения модуля основного экрана демонстрации переходов
-final class RootViewController: UIViewController {
+final class RootViewController: BaseViewController {
     // MARK: - Dependencies
     private let viewModel: RootViewModelInput
     
@@ -36,15 +36,10 @@ final class RootViewController: UIViewController {
         bindToViewModel(output)
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     // MARK: - Overrides methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
         viewModel.moduleDidLoad()
     }
     
@@ -58,7 +53,7 @@ final class RootViewController: UIViewController {
         
     }
     
-    private func setupUI() {
+    override func setupUI() {
         view.addSubview(stackView)
         stackView.alignment = .center
         stackView.axis = .vertical
@@ -92,7 +87,7 @@ final class RootViewController: UIViewController {
         setupConstraints()
     }
     
-    private func setupColors() {
+    override func setupColors() {
         view.backgroundColor = view.isDarkMode ? .black : .white
         stackView.backgroundColor = .clear
         modalOpeningButton.setTitleColor(view.isDarkMode ? .white : .black,
@@ -103,7 +98,7 @@ final class RootViewController: UIViewController {
                                         for: .normal)
     }
     
-    private func setupConstraints() {
+    override func setupConstraints() {
         cancelButton.snp.makeConstraints { make in
             make.left.equalTo(view.safeAreaLayoutGuide.snp.left).inset(16.0)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(16.0)
@@ -115,7 +110,6 @@ final class RootViewController: UIViewController {
 }
 
 // MARK: - SwiftUI Preview
-#if canImport(SwiftUI)
 import SwiftUI
 
 struct RootViewControllerContainer_Previews: PreviewProvider {
@@ -127,5 +121,3 @@ struct RootViewControllerContainer_Previews: PreviewProvider {
             .edgesIgnoringSafeArea(.vertical)
     }
 }
-
-#endif

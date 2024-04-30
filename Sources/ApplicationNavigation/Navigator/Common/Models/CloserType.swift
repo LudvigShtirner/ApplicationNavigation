@@ -20,4 +20,8 @@ public enum CloserType {
     case fall(FallCloseConfig)
     /// Скрытие контроллера из списка табов
     case tab(TabCloseConfig)
+    /// Скрытие контроллера на боттом шите
+    case bottomSheet(BottomSheetCloseConfig)
+    /// Скрытие контроллера на кастомном боттом шите
+    case customBottomSheet(CustomBottomSheetCloseConfig)
 }

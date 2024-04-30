@@ -39,7 +39,7 @@ final class NavigationCloser: Closer {
         }
         switch index {
         case 0:
-            fatalError("Need close by modal navigator")
+            assertionFailure("\(viewController) is RootViewController. Use another closer to hide")
         case 1:
             CATransaction.begin()
             CATransaction.setCompletionBlock(completion)

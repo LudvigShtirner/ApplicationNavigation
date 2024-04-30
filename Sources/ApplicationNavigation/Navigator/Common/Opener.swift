@@ -11,7 +11,7 @@ import SupportCode
 import UIKit
 
 /// Протокол объекта, открывающего контроллеры отображений
-protocol Opener {
+public protocol Opener {
     /// Показать отображение
     /// - Parameter viewController: контроллер отображения
     /// - Parameter completion: блок, вызываемый после показа
@@ -19,7 +19,7 @@ protocol Opener {
               completion: ResultBlock<Void>?)
 }
 
-extension Opener {
+public extension Opener {
     /// Показать отображение
     /// - Parameter viewController: контроллер отображения
     func show(_ viewController: UIViewController) {

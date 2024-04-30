@@ -9,7 +9,7 @@
 import UIKit
 
 /// Фабрика для создания навигаторов
-protocol NavigatorFactory: AnyObject {
+public protocol NavigatorFactory: AnyObject {
     /// Создать навигатор выбранного типа для открытия контроллера
     /// - Parameter type: тип навигатора
     func makeOpener(type: OpenerType) -> Opener
@@ -20,15 +20,15 @@ protocol NavigatorFactory: AnyObject {
 }
 
 /// Реализация фабрики навигаторов
-final class NavigatorFactoryBase: NavigatorFactory {
+public final class NavigatorFactoryBase: NavigatorFactory {
     // MARK: - Inits
     /// Синглтон фабрики для уменьшения потребления памяти
-    static let shared = NavigatorFactoryBase()
+    public static let shared = NavigatorFactoryBase()
     /// Приватный конструктор для избегания создания дополнительных инстансов
     private init() { }
     
     // MARK: - NavigatorFactory
-    func makeCloser(type: CloserType) -> Closer {
+    public func makeCloser(type: CloserType) -> Closer {
         switch type {
         case .root:
             return RootCloser()
@@ -41,10 +41,14 @@ final class NavigatorFactoryBase: NavigatorFactory {
             return FallCloser(duration: config.duration)
         case .tab(let config):
             return TabCloser(config: config)
+        case .bottomSheet(let config):
+            return BottomSheetCloser(config: config)
+        case .customBottomSheet(let config):
+            return CustomBottomSheetCloser(config: config)
         }
     }
     
-    func makeOpener(type: OpenerType) -> Opener {
+    public func makeOpener(type: OpenerType) -> Opener {
         switch type {
         case .root(let window):
             return RootOpener(window: window)
@@ -62,6 +66,10 @@ final class NavigatorFactoryBase: NavigatorFactory {
                               duration: config.duration)
         case .tab(let config):
             return TabOpener(config: config)
+        case .bottomSheet(let config):
+            return BottomSheetOpener(config: config)
+        case .customBottomSheet(let config):
+            return CustomBottomSheetOpener(config: config)
         }
     }
 }

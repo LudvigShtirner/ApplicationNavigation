@@ -69,7 +69,6 @@ final class ChildViewController: BaseViewController {
 }
 
 // MARK: - SwiftUI Preview
-#if canImport(SwiftUI)
 import SwiftUI
 
 struct ChildViewControllerContainer_Previews: PreviewProvider {
@@ -81,5 +80,3 @@ struct ChildViewControllerContainer_Previews: PreviewProvider {
             .edgesIgnoringSafeArea(.vertical)
     }
 }
-
-#endif

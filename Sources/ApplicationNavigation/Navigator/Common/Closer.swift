@@ -11,7 +11,7 @@ import SupportCode
 import UIKit
 
 /// Протокол объекта, закрывающего контроллеры отображений
-protocol Closer {
+public protocol Closer {
     /// Скрыть отображение
     /// - Parameter viewController: контроллер отображения
     /// - Parameter completion: блок, вызываемый после скрытия
@@ -20,7 +20,7 @@ protocol Closer {
 }
 
 /// Расширение протокола для удобного вызова дефолтного метода скрытия отображения
-extension Closer {
+public extension Closer {
     /// Скрыть отображение
     /// - Parameter viewController: контроллер отображения
     func hide(_ viewController: UIViewController) {
