@@ -18,6 +18,8 @@ protocol RootViewModelInput: AnyObject {
     func modalButtonClicked()
     func pushButtonClicked()
     func fallButtonClicked()
+    func bottomSheetClicked()
+    func customBottomSheetClicked()
 }
 
 protocol RootViewModelOutput: AnyObject {
@@ -29,4 +31,6 @@ protocol RootCoordinatorInteractor: AnyObject {
     func onPush(_ closure: @escaping VoidBlock)
     func onModal(_ closure: @escaping VoidBlock)
     func onFall(_ closure: @escaping VoidBlock)
+    func onBottomSheet(_ closure: @escaping VoidBlock)
+    func onCustomBottomSheet(_ closure: @escaping VoidBlock)
 }

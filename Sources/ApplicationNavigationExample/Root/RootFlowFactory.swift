@@ -9,11 +9,11 @@ protocol RootFlowFactory {
     func makeCoordinator() -> RootCoordinator
 }
 
-final class RootFlowFactoryImpl: RootFlowFactory {
+final class RootFlowFactoryBase: RootFlowFactory {
     // MARK: - RootFlowFactory
     func makeCoordinator() -> RootCoordinator {
-        let moduleFactory = RootModuleFactoryImpl()
-        let childFlowFactory = ChildFlowFactoryImpl()
+        let moduleFactory = RootModuleFactoryBase()
+        let childFlowFactory = ChildFlowFactoryBase()
         return RootCoordinator(moduleFactory: moduleFactory,
                                childFlowFactory: childFlowFactory)
     }

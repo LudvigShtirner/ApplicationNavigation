@@ -12,10 +12,10 @@ protocol ChildFlowFactory {
     func makeCoordinator(closeType: CloserType) -> ChildCoordinator
 }
 
-final class ChildFlowFactoryImpl: ChildFlowFactory {
+final class ChildFlowFactoryBase: ChildFlowFactory {
     // MARK: - ChildFlowFactory
     func makeCoordinator(closeType: CloserType) -> ChildCoordinator {
-        let moduleFactory = ChildModuleFactoryImpl()
+        let moduleFactory = ChildModuleFactoryBase()
         return ChildCoordinator(moduleFactory: moduleFactory,
                                 closeType: closeType)
     }

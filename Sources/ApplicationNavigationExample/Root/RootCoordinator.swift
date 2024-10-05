@@ -6,6 +6,7 @@
 //
 
 // Subprojects
+import LSUserInterface
 import ApplicationNavigation
 
 // Apple
@@ -30,49 +31,50 @@ final class RootCoordinator: BaseCoordinator, IBaseCoordinator {
         let navigationViewController = UINavigationController(rootViewController: module.viewController)
         navigationViewController.isNavigationBarHidden = true
         module.coordinatorInteractor.onClose { [weak self, weak navigationViewController] in
-            guard let navigationViewController = navigationViewController else { return }
+            guard let navigationViewController else { return }
             self?.finishFlow(viewController: navigationViewController)
         }
         module.coordinatorInteractor.onModal { [weak self, weak navigationViewController] in
-            guard let navigationViewController = navigationViewController else { return }
+            guard let navigationViewController else { return }
             self?.runChildFlow(openerType: .modal(.init(presentingController: navigationViewController)),
-                               navigationViewController: navigationViewController)
+                               closerType: .modal(.init(animated: true)))
         }
         module.coordinatorInteractor.onPush { [weak self, weak navigationViewController] in
-            guard let navigationViewController = navigationViewController else { return }
+            guard let navigationViewController else { return }
             self?.runChildFlow(openerType: .push(.init(navigationController: navigationViewController)),
-                               navigationViewController: navigationViewController)
+                               closerType: .push(.init(navigationController: navigationViewController)))
         }
         module.coordinatorInteractor.onFall { [weak self, weak navigationViewController] in
-            guard let navigationViewController = navigationViewController else { return }
+            guard let navigationViewController else { return }
             self?.runChildFlow(openerType: .fall(.init(presentingController: navigationViewController,
                                                        duration: 0.3)),
-                               navigationViewController: navigationViewController)
+                               closerType: .fall(.init(duration: 0.3)))
+        }
+        module.coordinatorInteractor.onBottomSheet { [weak self, weak navigationViewController] in
+            guard let navigationViewController else { return }
+            self?.runChildFlow(openerType: .bottomSheet(.init(presentingController: navigationViewController,
+                                                              cornerRadius: 24,
+                                                              detents: [.medium(), .large()],
+                                                              prefersScrollingExpandsWhenScrolledToEdge: true,
+                                                              prefersGrabberVisible: true)),
+                               closerType: .bottomSheet(.init(presentingController: navigationViewController)))
+        }
+        module.coordinatorInteractor.onCustomBottomSheet { [weak self, weak navigationViewController] in
+            guard let navigationViewController else { return }
+            let backgroundView = DesignedView().apply {
+                $0.useBackgroundColor(.init(color: .black.withAlphaComponent(0.4)))
+            }
+            self?.runChildFlow(openerType: .customBottomSheet(.init(presentingViewController: navigationViewController,
+                                                                    backgroundView: backgroundView)),
+                               closerType: .customBottomSheet(.init()))
         }
         return navigationViewController
     }
     
     // MARK: - Private methods
     private func runChildFlow(openerType: OpenerType,
-                              navigationViewController: UINavigationController) {
-        var closeType: CloserType
-        switch openerType {
-        case .root:
-            closeType = .root
-        case .modal:
-            closeType = .modal(.init(animated: true))
-        case .push:
-            closeType = .push(.init(navigationController: navigationViewController))
-        case .fall(_):
-            closeType = .fall(.init(duration: 0.3))
-        case .tab(_):
-            return
-        case .bottomSheet(_):
-            closeType = .bottomSheet(.init(presentingController: navigationViewController))
-        case .customBottomSheet(_):
-            closeType = .customBottomSheet(.init())
-        }
-        let coordinator = childFlowFactory.makeCoordinator(closeType: closeType)
+                              closerType: CloserType) {
+        let coordinator = childFlowFactory.makeCoordinator(closeType: closerType)
         runNextFlow(coordinator: coordinator,
                     openType: openerType)
     }

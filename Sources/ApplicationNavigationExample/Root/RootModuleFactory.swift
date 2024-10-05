@@ -10,7 +10,7 @@ protocol RootModuleFactory {
                            coordinatorInteractor: RootCoordinatorInteractor)
 }
 
-final class RootModuleFactoryImpl: RootModuleFactory {
+final class RootModuleFactoryBase: RootModuleFactory {
     // MARK: - RootModuleFactory
     func buildModule() -> (viewController: RootViewController,
                            coordinatorInteractor: RootCoordinatorInteractor) {
@@ -22,6 +22,6 @@ final class RootModuleFactoryImpl: RootModuleFactory {
     
     // MARK: - Private methods
     private func buildViewModel() -> RootViewModel {
-        return RootViewModelImpl()
+        return RootViewModelBase()
     }
 }

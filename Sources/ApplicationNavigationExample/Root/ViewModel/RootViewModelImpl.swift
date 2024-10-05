@@ -1,5 +1,5 @@
 //
-//  RootViewModelImpl.swift
+//  RootViewModelBase.swift
 //  ApplicationNavigationExample
 //
 //  Created by Алексей Филиппов on 06.11.2021.
@@ -8,7 +8,7 @@
 // Subprojects
 import SupportCode
 
-final class RootViewModelImpl {
+final class RootViewModelBase {
     // MARK: - Dependencies
     
     // MARK: - Data
@@ -16,6 +16,8 @@ final class RootViewModelImpl {
     private var pushAction: VoidBlock?
     private var modalAction: VoidBlock?
     private var fallAction: VoidBlock?
+    private var bottomSheetAction: VoidBlock?
+    private var customBottomSheetAction: VoidBlock?
     
     // MARK: - Inits
     init() {
@@ -27,14 +29,14 @@ final class RootViewModelImpl {
 }
 
 // MARK: - RootViewModel
-extension RootViewModelImpl: RootViewModel {
+extension RootViewModelBase: RootViewModel {
     var input: RootViewModelInput { return self }
     var output: RootViewModelOutput { return self }
     var coordinatorInteractor: RootCoordinatorInteractor { return self }
 }
 
 // MARK: - RootViewModelInput
-extension RootViewModelImpl: RootViewModelInput {
+extension RootViewModelBase: RootViewModelInput {
     func moduleDidLoad() {
         
     }
@@ -50,15 +52,23 @@ extension RootViewModelImpl: RootViewModelInput {
     func fallButtonClicked() {
         fallAction?()
     }
+    
+    func bottomSheetClicked() {
+        bottomSheetAction?()
+    }
+    
+    func customBottomSheetClicked() {
+        customBottomSheetAction?()
+    }
 }
 
 // MARK: - RootViewModelOutput
-extension RootViewModelImpl: RootViewModelOutput {
+extension RootViewModelBase: RootViewModelOutput {
     
 }
 
 // MARK: - RootAlbumCellModelFactory
-extension RootViewModelImpl: RootCoordinatorInteractor {
+extension RootViewModelBase: RootCoordinatorInteractor {
     func onClose(_ closure: @escaping VoidBlock) {
         closeAction = closure
     }
@@ -73,5 +83,13 @@ extension RootViewModelImpl: RootCoordinatorInteractor {
     
     func onFall(_ closure: @escaping VoidBlock) {
         fallAction = closure
+    }
+    
+    func onBottomSheet(_ closure: @escaping VoidBlock) {
+        bottomSheetAction = closure
+    }
+    
+    func onCustomBottomSheet(_ closure: @escaping VoidBlock) {
+        customBottomSheetAction = closure
     }
 }

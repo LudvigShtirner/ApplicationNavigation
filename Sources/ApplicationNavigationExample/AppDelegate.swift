@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    private let flowFactory: RootFlowFactory = RootFlowFactoryImpl()
+    private let flowFactory: RootFlowFactory = RootFlowFactoryBase()
     private var appCoordinator = ApplicationNavigation.RootCoordinator(closeType: .root)
     
     func application(_ application: UIApplication,

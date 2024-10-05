@@ -22,37 +22,58 @@ final class RootViewController: BaseViewController {
     
     // MARK: - UI
     private let stackView = UIStackView()
-    private let cancelButton = BaseButton(type: .system)
-    private let modalOpeningButton = BaseButton(type: .system)
-    private let pushOpeningButton = BaseButton(type: .system)
-    private let fallOpeningButton = BaseButton(type: .system)
+    private let cancelButton = DesignedButton(type: .system).apply {
+        $0.setTitle(RootLocalization.cancel, for: .normal)
+    }
+    private lazy var modalOpeningButton = DesignedButton(type: .system)
+        .apply {
+            $0.setTitle(RootLocalization.modal, for: .normal)
+            $0.useTitleColor(.init(normal: .init(lightColor: .black, darkColor: .white)))
+        }
+        .onEvent(.touchUpInside) { [unowned viewModel] in
+            viewModel.modalButtonClicked()
+        }
+    private lazy var pushOpeningButton = DesignedButton(type: .system)
+        .apply {
+            $0.setTitle(RootLocalization.push, for: .normal)
+            $0.useTitleColor(.init(normal: .init(lightColor: .black, darkColor: .white)))
+        }
+        .onEvent(.touchUpInside) { [unowned viewModel] in
+            viewModel.pushButtonClicked()
+        }
+    private lazy var fallOpeningButton = DesignedButton(type: .system)
+        .apply {
+            $0.setTitle(RootLocalization.fall, for: .normal)
+            $0.useTitleColor(.init(normal: .init(lightColor: .black, darkColor: .white)))
+        }
+        .onEvent(.touchUpInside) { [unowned viewModel] in
+            viewModel.fallButtonClicked()
+        }
+    private lazy var bottomSheetButton = DesignedButton(type: .system)
+        .apply {
+            $0.setTitle(RootLocalization.bottomSheet, for: .normal)
+            $0.useTitleColor(.init(normal: .init(lightColor: .black, darkColor: .white)))
+        }
+        .onEvent(.touchUpInside) { [unowned viewModel] in
+            viewModel.bottomSheetClicked()
+        }
+    private lazy var customBottomSheetButton = DesignedButton(type: .system)
+        .apply {
+            $0.setTitle(RootLocalization.customBottomSheet, for: .normal)
+            $0.useTitleColor(.init(normal: .init(lightColor: .black, darkColor: .white)))
+        }
+        .onEvent(.touchUpInside) { [weak self] in
+            self?.viewModel.customBottomSheetClicked()
+        }
     
     // MARK: - Inits
     init(input: RootViewModelInput,
          output: RootViewModelOutput) {
         self.viewModel = input
-        super.init(nibName: nil, bundle: nil)
-        
-        bindToViewModel(output)
-    }
-    
-    // MARK: - Overrides methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        viewModel.moduleDidLoad()
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        setupColors()
+        super.init()
     }
     
     // MARK: - Private methods
-    private func bindToViewModel(_ output: RootViewModelOutput) {
-        
-    }
-    
     override func setupUI() {
         view.addSubview(stackView)
         stackView.alignment = .center
@@ -61,41 +82,17 @@ final class RootViewController: BaseViewController {
         stackView.spacing = 8.0
         
         stackView.addArrangedSubview(modalOpeningButton)
-        modalOpeningButton.setTitle(RootLocalization.modal, for: .normal)
-        modalOpeningButton.onEvent(.touchUpInside) { [weak self] in
-            self?.viewModel.modalButtonClicked()
-        }
-        
         stackView.addArrangedSubview(pushOpeningButton)
-        pushOpeningButton.setTitle(RootLocalization.push, for: .normal)
-        pushOpeningButton.onEvent(.touchUpInside) { [weak self] in
-            self?.viewModel.pushButtonClicked()
-        }
-
-        
         stackView.addArrangedSubview(fallOpeningButton)
-        fallOpeningButton.setTitle(RootLocalization.fall, for: .normal)
-        fallOpeningButton.onEvent(.touchUpInside) { [weak self] in
-            self?.viewModel.fallButtonClicked()
-        }
-
+        stackView.addArrangedSubview(bottomSheetButton)
+        stackView.addArrangedSubview(customBottomSheetButton)
         
         view.addSubview(cancelButton)
-        cancelButton.setTitle(RootLocalization.cancel, for: .normal)
-        
-        setupColors()
-        setupConstraints()
     }
     
     override func setupColors() {
         view.backgroundColor = view.isDarkMode ? .black : .white
         stackView.backgroundColor = .clear
-        modalOpeningButton.setTitleColor(view.isDarkMode ? .white : .black,
-                                         for: .normal)
-        pushOpeningButton.setTitleColor(view.isDarkMode ? .white : .black,
-                                        for: .normal)
-        fallOpeningButton.setTitleColor(view.isDarkMode ? .white : .black,
-                                        for: .normal)
     }
     
     override func setupConstraints() {
@@ -115,7 +112,7 @@ import SwiftUI
 struct RootViewControllerContainer_Previews: PreviewProvider {
     static var previews: some View {
         SwiftUIVCPreview {
-            RootModuleFactoryImpl().buildModule().viewController
+            RootModuleFactoryBase().buildModule().viewController
         }
             .previewLayout(.device)
             .edgesIgnoringSafeArea(.vertical)

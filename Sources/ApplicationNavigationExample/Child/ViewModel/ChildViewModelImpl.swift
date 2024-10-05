@@ -1,5 +1,5 @@
 //
-//  ChildViewModelImpl.swift
+//  ChildViewModelBase.swift
 //  ApplicationNavigationExample
 //
 //  Created by Алексей Филиппов on 10.11.2021.
@@ -8,7 +8,7 @@
 // Subprojects
 import SupportCode
 
-final class ChildViewModelImpl {
+final class ChildViewModelBase {
     // MARK: - Dependencies
     
     // MARK: - Data
@@ -24,14 +24,14 @@ final class ChildViewModelImpl {
 }
 
 // MARK: - ChildViewModel
-extension ChildViewModelImpl: ChildViewModel {
+extension ChildViewModelBase: ChildViewModel {
     var input: ChildViewModelInput { self }
     var output: ChildViewModelOutput { self }
     var coordinatorInteractor: ChildCoordinatorInteractor { self }
 }
 
 // MARK: - ChildViewModelInput
-extension ChildViewModelImpl: ChildViewModelInput {
+extension ChildViewModelBase: ChildViewModelInput {
     func moduleDidLoad() {
         
     }
@@ -42,12 +42,12 @@ extension ChildViewModelImpl: ChildViewModelInput {
 }
 
 // MARK: - ChildViewModelOutput
-extension ChildViewModelImpl: ChildViewModelOutput {
+extension ChildViewModelBase: ChildViewModelOutput {
     
 }
 
 // MARK: - ChildAlbumCellModelFactory
-extension ChildViewModelImpl: ChildCoordinatorInteractor {
+extension ChildViewModelBase: ChildCoordinatorInteractor {
     func onClose(_ closure: @escaping VoidBlock) {
         closeAction = closure
     }

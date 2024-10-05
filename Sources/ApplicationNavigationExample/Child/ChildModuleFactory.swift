@@ -10,7 +10,7 @@ protocol ChildModuleFactory {
                            coordinatorInteractor: ChildCoordinatorInteractor)
 }
 
-final class ChildModuleFactoryImpl: ChildModuleFactory {
+final class ChildModuleFactoryBase: ChildModuleFactory {
     // MARK: - Dependencies
     
     // MARK: - ChildModuleFactory
@@ -18,12 +18,12 @@ final class ChildModuleFactoryImpl: ChildModuleFactory {
                            coordinatorInteractor: ChildCoordinatorInteractor) {
         let viewModel = buildViewModel()
         let viewController = ChildViewController(input: viewModel.input,
-                                                                      output: viewModel.output)
+                                                 output: viewModel.output)
         return (viewController, viewModel.coordinatorInteractor)
     }
     
     // MARK: - Private methods
     private func buildViewModel() -> ChildViewModel {
-        return ChildViewModelImpl()
+        return ChildViewModelBase()
     }
 }

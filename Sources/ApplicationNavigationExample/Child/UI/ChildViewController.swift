@@ -17,12 +17,15 @@ final class ChildViewController: BaseViewController {
     private let viewModel: ChildViewModelInput
     
     // MARK: - UI
-    private let cancelButton = DesignedButton()
-        .setTitle(.init(normalText: RootLocalization.cancel))
-    private let backgroundImageView = DesignedImageView()
-        .setImage(UIImage(named: "wallpaper")!)
-        .setContentMode(.scaleAspectFill)
-        .setClipsToBounds(true)
+    private let cancelButton = DesignedButton().apply {
+        $0.setTitle(RootLocalization.cancel, for: .normal)
+    }
+    private let backgroundImageView = DesignedImageView().apply {
+        let resource = UIImage(resource: .wallpaper)
+        $0.useImage(resource)
+        $0.contentMode = .scaleAspectFill
+        $0.clipsToBounds = true
+    }
     
     // MARK: - Inits
     init(input: ChildViewModelInput,
@@ -72,7 +75,7 @@ import SwiftUI
 struct ChildViewControllerContainer_Previews: PreviewProvider {
     static var previews: some View {
         SwiftUIVCPreview {
-            ChildModuleFactoryImpl().buildModule().viewController
+            ChildModuleFactoryBase().buildModule().viewController
         }
             .previewLayout(.device)
             .edgesIgnoringSafeArea(.vertical)
